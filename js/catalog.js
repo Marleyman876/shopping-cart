@@ -22,8 +22,8 @@ function populateForm() {
 }
 
 // When someone submits the form, we need to add the selected item to the cart
-// object, save the whole thing back to local storage and update the screen
-// so that it shows the # of items in the cart and a quick preview of the cart itself.
+// object, save the hole thing back to local storage and update the screen
+// so that it shows thwe # of items in the cart and a quick preview of the cart itself.
 function handleSubmit(event) {
 
   // DONE: Prevent the page from reloading
@@ -41,16 +41,24 @@ function handleSubmit(event) {
 function addSelectedItemToCart() {
   // DONE: suss out the item picked from the select list
   let item = document.getElementById('items').value;
-  console.log(item);
+  //console.log(item);
   // DONE: get the quantity
   let quantity = document.getElementById('quantity').value;
-  console.log(quantity);
+  //console.log(quantity);
   // DONE: using those, add one item to the Cart
   cart.addItem(item, quantity); // Ryan - this isn't done!!!!!!
 }
 
-// TODO: Update the cart count in the header nav with the number of items in the Cart
-function updateCounter() {}
+// DONE: Update the cart count in the header nav with the number of items in the Cart
+function updateCounter() { 
+  //console.log(cart);
+  let itemCount = 0;
+  for(let i = 0; i < cart.items.length; i++){
+    itemCount += parseInt(cart.items[i].quantity);
+  }
+ // console.log(itemCount);
+  document.getElementById('itemCount').textContent = ` ${itemCount}`;
+}
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
