@@ -18,27 +18,46 @@ function renderCart() {
   showCart();
 }
 
-// TODO: Remove all of the rows (tr) in the cart table (tbody)
-function clearCart() {}
+// Done: Remove all of the rows (tr) in the cart table (tbody)
+function clearCart() {
+  let tbody = document.querySelector('tbody');
+  while (tbody.firstChild) {
+    tbody.removeChild(tbody.firstChild);
+  }
+}
 
-// TODO: Fill in the <tr>'s under the <tbody> for each item in the cart
+// Done: Fill in the <tr>'s under the <tbody> for each item in the cart
 function showCart() {
 
-  // TODO: Find the table body
-
-  // TODO: Iterate over the items in the cart
-  // TODO: Create a TR
-  // TODO: Create a TD for the delete link, quantity,  and the item
-  // TODO: Add the TR to the TBODY and each of the TD's to the TR
-
+  // Done: Find the table body
+  let tbody = document.querySelector('tbody');
+  // Done: Iterate over the items in the cart
+  // Done: Create a TR
+  // Done: Create a TD for the delete link, quantity,  and the item
+  // Done: Add the TR to the TBODY and each of the TD's to the TR
+  for (let item of cart.items) {
+    let tr = document.createElement('tr');
+    let remove = document.createElement('td');
+    remove.textContent = 'X';
+    remove.setAttribute('value', item.product);
+    tr.appendChild(remove);
+    let quantity = document.createElement('td');
+    quantity.textContent = item.quantity;
+    tr.appendChild(quantity);
+    let product = document.createElement('td');
+    product.textContent = item.product;
+    tr.appendChild(product);
+    tbody.appendChild(tr);
+  }
 }
 
 function removeItemFromCart(event) {
-
-  // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
-  // TODO: Save the cart back to local storage
-  // TODO: Re-draw the cart table
-
+  // Done: When a delete link is clicked, use cart.removeItem to remove the correct item
+  // Done: Save the cart back to local storage
+  // Done: Re-draw the cart table
+  cart.removeItem(event.target.getAttribute('value'));
+  cart.saveToLocalStorage();
+  renderCart();
 }
 
 // This will initialize the page and draw the cart on screen
